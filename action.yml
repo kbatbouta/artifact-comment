@@ -1,0 +1,13 @@
+name: 'Get Artifact Url'
+description: 'Get a run artifact download Url'
+inputs:
+  run-id:
+    description: 'current run Id'
+    required: true  
+outputs:
+  urls:
+    description: 'Urls of the uploaded artifacts'
+
+runs:  
+  using: 'node12'
+  main: 'index.js'
