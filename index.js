@@ -19,7 +19,7 @@ async function main() {
         owner: owner,
         repo: repo
       });
-    
+    console.log(`artifacts = ${artifacts}`);
     if (artifacts.total_count != 0) {
       var urls = '';
       for(var i = 0;i < artifacts.total_count;i++) {
