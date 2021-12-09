@@ -15,7 +15,7 @@ async function main() {
 
     console.log(`get-artifact.js started...`);
     console.log(`run id = ${runId}`);
-    const { artifacts } = octokit.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {
+    const { artifacts } = await octokit.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {
         owner: owner,
         repo: repo,
         run_id: runId
