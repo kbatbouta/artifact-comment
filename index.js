@@ -17,7 +17,8 @@ async function main() {
     console.log(`run id = ${runId}`);
     const { artifacts } = octokit.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {
         owner: owner,
-        repo: repo
+        repo: repo,
+        run_id: runId
       });
     console.log(`artifacts = ${artifacts}`);
     if (artifacts.total_count != 0) {
