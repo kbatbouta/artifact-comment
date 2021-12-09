@@ -2,21 +2,24 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 const { Octokit } = require("@octokit/action");
-const octokit = new Octokit();
 
-try {
+main();
+
+async function main() { 
+  try {
+    const octokit = new Octokit();
+    
     // `who-to-greet` input defined in action metadata file    
     const runId = core.getInput('run-id');
     const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 
     console.log(`get-artifact.js started...`);
     console.log(`run id = ${runId}`);
-    const { artifacts } = await octokit.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {
+    const { artifacts } = octokit.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {
         owner: owner,
         repo: repo
       });
-
-    core.out
+    
     if (artifacts.total_count != 0) {
       var urls = '';
       for(var i = 0;i < artifacts.total_count;i++) {
@@ -29,3 +32,4 @@ try {
   } catch (error) {
     core.setFailed(error.message);
   }
+}
